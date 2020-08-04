@@ -47,6 +47,8 @@ export default class Bmicalculator extends Component {
                         maximumValue={300}
                         onValueChange={this.change.bind(this)}
                         value={value}
+                        minimumTrackTintColor="#8e546c"
+                         maximumTrackTintColor="#060608"
                     />
                 </View>
                 <View style={styles.view4}>
