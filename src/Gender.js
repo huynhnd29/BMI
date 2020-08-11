@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { MaterialCommunityIcons, Foundation } from '@expo/vector-icons';
 import { BOX_FEMALE } from './style';
-export default function Gender() {
+export default function Gender({gender,setGender}) {
     const [Male, setMale] = useState(styles.boxfemale);
     const [FeMale, setFeMale] = useState(styles.boxfemale);
     const femalechange = () => {

@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { AntDesign, MaterialCommunityIcons, FontAwesome5, Foundation } from '@expo/vector-icons';
 import { BOX_FEMALE } from './style';
-export default function Weightage() {
-    const [weight, setweight] = useState(5);
+export default function Weightage({weight,age,setweight,setage}) {
+    
     const onPressUp = () => setweight(weight+1);
     const onPressDown = () =>{
         if(weight > 1){
@@ -11,11 +11,11 @@ export default function Weightage() {
         }
     } 
 
-    const [height, setheight] = useState(5);
-    const onPressUp2 = () => setheight(height +1);
+  
+    const onPressUp2 = () => setage(age +1);
     const onPressDown2 = () =>{
-        if(height>1){
-            setheight(height-1);
+        if(age>1){
+            setage(age-1);
         }
     } 
     return (
@@ -39,7 +39,7 @@ export default function Weightage() {
                     </View>
                     <View style={styles.boxfemale} >
                         <Text style={{ color: "#636e72" }}>AGE</Text>
-                        <Text style={{ color: "#FFF", fontSize: 32, fontWeight: "bold", margin: 8 }}>{height}</Text>
+                        <Text style={{ color: "#FFF", fontSize: 32, fontWeight: "bold", margin: 8 }}>{age}</Text>
                         <View style={{ flexDirection: "row" }}>
                             <TouchableOpacity>
                                 <AntDesign name="minuscircle" size={32} color="black" style={{ color: "gray", marginRight: 12 }}

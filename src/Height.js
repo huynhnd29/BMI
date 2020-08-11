@@ -3,18 +3,18 @@ import { View, Text, StyleSheet } from 'react-native';
 import Slider from '@react-native-community/slider';
 import React, { useState } from 'react'
 
-export default function Height() {
-    const [Height, setheight] = useState(150);
+export default function Height({height,setheight}) {
+
     return (
         <View style={styles.view3}>
             <Text style={{ color: "#636e72" }}>HEIGHT</Text>
-            <Text t style={{ color: "#FFF", fontSize: 32, fontWeight: "bold" }}>{Height} <Text>cm</Text></Text>
+            <Text t style={{ color: "#FFF", fontSize: 32, fontWeight: "bold" }}>{height} <Text>cm</Text></Text>
             <Slider
                 style={{ width: "100%", marginTop: 20 }}
                 step={1}
                 minimumValue={0}
                 maximumValue={300}
-                value={Height}
+                value={height}
                 minimumTrackTintColor="#8e546c"
                 maximumTrackTintColor="black"
                 onValueChange={(value)=> setheight(value)}
