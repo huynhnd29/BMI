@@ -24,7 +24,7 @@ export default function Bmicalculator() {
            
     const set = ()=> {
         setheight(150)
-        setweight(70)
+        setweight(60)
         setage(30)
         setModalVisible(false)
         
