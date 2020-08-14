@@ -9,13 +9,41 @@ import Weightage from './Weightage';
 import { BOX_FEMALE } from './style';
 import React, { useState } from 'react'
 
+const ACTIVE_COLOR = "#24263b";
+const UNACTIVE_COLOR = "#fff";
+
 export default function Bmicalculator() {
+    // const [bmi, setGender] = useState(bmi);
+    const [should,setshould] = useState("bạn nên ăn nhiều hơn")
     const [modalVisible, setModalVisible] = useState(false);
-    const [weight, setweight] = useState(70);
-    const [age, setage] = useState(5);
+    const [weight, setweight] = useState(60);
+    const [age, setage] = useState(30);
     const [height, setheight] = useState(150);
-    const height1 = height*height/100
-    const bmi =weight/height1
+    const height1 = height*height/10000
+    const bmi =(weight/height1).toFixed(2)
+           
+    const set = ()=> {
+        setheight(150)
+        setweight(70)
+        setage(30)
+        setModalVisible(false)
+        
+    }
+    const setbmi = ()=> {
+        if( bmi<= 18.50){
+            setshould("bạn nên ăn nhiều hơn")
+        }
+        else if(18.50<bmi &&bmi<= 25.00){
+            setshould("Giữ vững chế độ ăn !")
+        }
+        else if(25.00<bmi && bmi<=30.00 ){
+            setshould("Bạn nên ăn ít đi 1 chút !")
+        }
+        else{
+            setshould("Bạn cần giảm bớt chế độ ăn , nên thể thao!")
+        }
+        setModalVisible(true)
+    }
     return (
         <View style={styles.container}>
             <StatusBar style="light -content" />
@@ -29,7 +57,7 @@ export default function Bmicalculator() {
 
             <Weightage weight={weight} age= {age}  setweight={setweight} setage={setage}/>
 
-            <TouchableOpacity style={styles.view5} onPress = {() =>setModalVisible(true)}>
+            <TouchableOpacity style={styles.view5} onPress = {setbmi }>
                 <Text style={{ color: "#FFF", fontSize: 24, fontWeight: "bold" }}>CALCULATE</Text>
             </TouchableOpacity>
 
@@ -41,16 +69,19 @@ export default function Bmicalculator() {
                 <View style={{flex:1,backgroundColor:"#636e72"}}>
                     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
                         <View style={{justifyContent:"space-around",flexDirection:"row",marginBottom:16}}>
-                            <Text style={styles.textstyle}> Thiếu cân </Text>
-                            <Text style={styles.textstyle}> Bình Thường </Text>
-                            <Text style={styles.textstyle}> Thiếu cân </Text>
-                            <Text style={styles.textstyle1}> Béo Phì </Text>
+                            <Text style={[styles.textstyle,{color:bmi<= 18.50 ? ACTIVE_COLOR : UNACTIVE_COLOR}]}> Thiếu cân </Text>
+                            <Text style={[styles.textstyle,{color: 18.50<bmi &&bmi<= 25.00 ? ACTIVE_COLOR : UNACTIVE_COLOR}]}> Bình Thường </Text>
+                            <Text style={[styles.textstyle,{color:25.00<bmi && bmi<=30.00 ? ACTIVE_COLOR : UNACTIVE_COLOR}]}> Thừa cân </Text>
+                            <Text style={[styles.textstyle1,{color:bmi>30 ? ACTIVE_COLOR : UNACTIVE_COLOR}]}> Béo Phì </Text>
                         </View>
-                         <Text style={{fontSize:32 }}>BMI : {bmi.toFixed(2)}</Text>
+                         <Text style={{fontSize:32 }}>BMI : {bmi}</Text>
 
-                        <TouchableOpacity style={styles.modul} onPress = {()=> setModalVisible(false)}>
+                        <TouchableOpacity style={styles.modul} onPress = {()=> set()}>
                                 <Text style={{color:"#fff",fontWeight:"bold",fontSize:32}}> OK! </Text>
                         </TouchableOpacity>  
+                        <View style={styles.shouldstyle}>
+                              <Text style={styles.textstyle1}>{should}</Text>
+                        </View>
                     </View>
                 </View>
             </Modal>
@@ -67,7 +98,6 @@ export default function Bmicalculator() {
 //         )
 //     }
 // }
-
 const styles = StyleSheet.create({
     container: {
         flex: 10,
@@ -132,5 +162,9 @@ const styles = StyleSheet.create({
         ...BOX_FEMALE,
         backgroundColor: "#323344",
     },
+    shouldstyle:{
+        marginTop:16,
+
+    }
 
 });
